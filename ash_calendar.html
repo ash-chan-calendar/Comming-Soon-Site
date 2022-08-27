@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+
+    <title>ASHちゃんカレンダー</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+      .test_img{
+        width: 100%;
+      }
+      #datetime{
+        background-color: black;
+        display: inline-block;
+        top: -100px;
+        position: relative;
+        /* position: absolute; */
+        left: 100px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img class="test_img" src="/Image/Test/ash3.jfif" alt="">
+    </div>
+    <div>
+      <!-- <h2 id="datetime">hi</h2> -->
+      <h1 id="datetime">2022年8月27日 (土)</ｈ>
+    </div>
+    <div class="header">
+      <h2><a href="index.html">戻る</a></h2>
+    </div>
+  </body>
+</html>
+
+<script>
+  setInterval(function(){
+    var y = new Date().getFullYear();
+    var m = new Date().getMonth() + 1;
+    var d = new Date().getDate();
+    var w = new Date().getDay();
+    var wd = ["日","月","火","水","木","金","土"];
+    var youbi = wd[w];
+    var h = new Date().getHours();
+    var min = new Date().getMinutes();
+    var s = new Date().getSeconds();
+    $("#datetime").html(y + "年" + m + "月" + d + "日" + "（" + youbi + "）" + h + ":" + min + ":" + s);
+},1000);
+
+</script>
