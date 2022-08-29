@@ -7,49 +7,208 @@
     <title>ASHちゃんカレンダー</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
 
     <style>
       .test_img{
         width: 100%;
+        /* height: auto; */
+      }
+      .calendar-parent{
+        width: 300px;
+        position: relative;
+        top:-400px;
+        left: 400px;
+      }
+      .calendar{
+        /* display: flex; */
+        /* flex-flow: row wrap; */
+        color: black;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+      }
+      .weekday{
+        background-color: rgb(128, 128, 128,0.5);
+      }
+      .day {
+        flex: 1 1 auto;
+        /* background-color: gray; */
+        /* color: black; */
+        color: blue;
+        font-size:x-large;
+      }
+      .first-day{
+        grid-column-start: 1;
+        color: blue;
+        font-size:x-large;
+
+      }
+      .calendar-box{
+        position: relative;
       }
       #datetime{
+        width: 100%;
         background-color: black;
-        display: inline-block;
-        top: -100px;
-        position: relative;
-        /* position: absolute; */
-        left: 100px;
-
+        /* display: inline-block; */
+        /* position: relative; */
+        /* top: -100px; */
+        /* left: 100px; */
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 1.5rem;
+        /* font-size: 100%; */
+        /* top: 300px; */
+        /* left: 100px; */
       }
     </style>
   </head>
+  <!-- 国民の祝日 -->
+  <!-- https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html -->
   <body>
-    <div>
+    <div class="calendar-box">
       <img class="test_img" src="/Image/Test/ash3.jfif" alt="">
+      <div id="datetime">2022年8月27日 (土)</div>
     </div>
     <div>
       <!-- <h2 id="datetime">hi</h2> -->
-      <h1 id="datetime">2022年8月27日 (土)</ｈ>
     </div>
     <div class="header">
       <h2><a href="index.html">戻る</a></h2>
+    </div>
+    <div class="calendar-parent">
+      <div class="calendar">
+        <div class="weekday">日</div>
+        <div class="weekday">月</div>
+        <div class="weekday">火</div>
+        <div class="weekday">水</div>
+        <div class="weekday">木</div>
+        <div class="weekday">金</div>
+        <div class="weekday">土</div>
+
+        <div class="first-day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+        <div class="day">26</div>
+        <div class="day">27</div>
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+        <!-- <div>
+          <div class="day">1</div>
+          <div class="day">2</div>
+          <div class="day">3</div>
+          <div class="day">4</div>
+          <div class="day">5</div>
+          <div class="day">6</div>
+          <div class="day">7</div>
+        </div>
+        <div>
+          <div class="day">8</div>
+          <div class="day">9</div>
+          <div class="day">10</div>
+          <div class="day">11</div>
+          <div class="day">12</div>
+          <div class="day">13</div>
+          <div class="day">14</div>
+        </div>
+        <div>
+          <div class="day">15</div>
+          <div class="day">16</div>
+          <div class="day">17</div>
+          <div class="day">18</div>
+          <div class="day">19</div>
+          <div class="day">20</div>
+          <div class="day">21</div>
+        </div>
+        <div>
+          <div class="day">22</div>
+          <div class="day">23</div>
+          <div class="day">24</div>
+          <div class="day">25</div>
+          <div class="day">26</div>
+          <div class="day">27</div>
+          <div class="day">28</div>
+        </div>
+        <div>
+          <div class="day">29</div>
+          <div class="day">30</div>
+          <div class="day">31</div>
+        </div> -->
+      </div>
     </div>
   </body>
 </html>
 
 <script>
-  setInterval(function(){
-    var y = new Date().getFullYear();
-    var m = new Date().getMonth() + 1;
-    var d = new Date().getDate();
-    var w = new Date().getDay();
-    var wd = ["日","月","火","水","木","金","土"];
-    var youbi = wd[w];
-    var h = new Date().getHours();
-    var min = new Date().getMinutes();
-    var s = new Date().getSeconds();
-    $("#datetime").html(y + "年" + m + "月" + d + "日" + "（" + youbi + "）" + h + ":" + min + ":" + s);
-},1000);
+//   setInterval(function(){
+//     var y = new Date().getFullYear();
+//     var m = new Date().getMonth() + 1;
+//     var d = new Date().getDate();
+//     var w = new Date().getDay();
+//     var wd = ["日","月","火","水","木","金","土"];
+//     var youbi = wd[w];
+//     var h = new Date().getHours();
+//     var min = new Date().getMinutes();
+//     var s = new Date().getSeconds();
+//     $("#datetime").html(y + "年" + m + "月" + d + "日" + "（" + youbi + "）" + h + ":" + min + ":" + s);
+// },1000);
 
+// 日にちから曜日を取得してみる
+// var datetime = new Date(2022, 8, 28)
+var month = 8
+var datetime = new Date(2022,month-1,28)
+var weekday = ["日","月","火","水","木","金","土"];
+var date = datetime.getDay()
+week_str = weekday[date]
+
+console.log('曜日,月,日,年');
+console.log(`datetime: ${datetime}`);
+console.log(`week_str: ${week_str}`);
+// $("#datetime").html(date)
+    // $("#datetime").html(datetime)
+
+  $.get("Calendar.json", parseJson, "json")
+  function parseJson(data) {
+    console.log(`data.length: ${Object.keys(data).length}`);
+    console.log(`data object keys: ${Object.keys(data)}`);
+    // console.log(`data: ${data["holiday"]}`);
+    console.log(`2023: ${JSON.stringify(data["2023"],null,2)}`);
+    // console.log(`holiday: ${JSON.stringify(data["holiday"],null,2)}`);
+    // console.log(`data: ${JSON.stringify(data)}`);
+    console.log(`data: ${data["holiday"]["2023-1-1"]}`);
+    console.dir(`data 2023 1: ${JSON.stringify(data["2023"])}`);
+    console.log(data["2023"]["1"]["end"]);
+
+    for(let v=1;v<=data["2023"]["1"]["end"];v++){
+      // console.log(v);
+      if (v%7==0){
+        console.log('改行');
+      }
+      // $('.calendar').append(`<div>`)
+    }
+    // console.log(data);
+  }
 </script>
