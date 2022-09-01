@@ -309,18 +309,33 @@
 
 // 日にちから曜日を取得してみる
 // var datetime = new Date(2022, 8, 28)
-var month = 8
-var datetime = new Date(2022,month-1,28)
-var weekday = ["日","月","火","水","木","金","土"];
-var date = datetime.getDay()
-week_str = weekday[date]
+var month = 9
+var datetime = new Date(2022,month-1,1)
+var weekday_str = ["日","月","火","水","木","金","土"];
+var weekday_str_full = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+var weekday_str_short = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+// var month_str_short = ["Sun.","Mon.","Tue.","Wed.","Thu.","Fri.","Sat."]
+var month_str_full = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+var month_stf_short = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+// var month_stf_short = ["Jan.","Feb.","Mar.","Apr.","May.","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."]
+
+var month
+var weekday = datetime.getDay()
+var month = datetime.getMonth()
+week_str = weekday_str[weekday]
 
 console.log('曜日,月,日,年');
 console.log(`datetime: ${datetime}`);
 console.log(`week_str: ${week_str}`);
+console.log(weekday_str_full[weekday]);
+console.log(weekday_str_short[weekday]);
+console.log(month_str_full[month]);
+console.log(month_stf_short[month]);
 // $("#datetime").html(date)
     // $("#datetime").html(datetime)
 
+  // カレンダーのデータを取ってカレンダーを作成
+  /*
   $.get("Calendar.json", parseJson, "json")
   function parseJson(data) {
     console.log(`data.length: ${Object.keys(data).length}`);
@@ -333,6 +348,7 @@ console.log(`week_str: ${week_str}`);
     console.dir(`data 2023 1: ${JSON.stringify(data["2023"])}`);
     console.log(data["2023"]["1"]["end"]);
 
+
     for(let v=1;v<=data["2023"]["1"]["end"];v++){
       // console.log(v);
       if (v%7==0){
@@ -342,4 +358,5 @@ console.log(`week_str: ${week_str}`);
     }
     // console.log(data);
   }
+  */
 </script>
