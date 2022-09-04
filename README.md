@@ -1,2 +1,2 @@
 # ASH-CHAN-Calendar
-http://ash-cale.com
+https://ash-cale.com
