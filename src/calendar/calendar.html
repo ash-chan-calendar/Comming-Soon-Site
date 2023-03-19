@@ -5,12 +5,21 @@
     <meta charset="UTF-8">
 
     <script src="calendar.js"></script>
+    <link rel="stylesheet" href="calendar.css">
   </head>
 
   <body>
     <main>
       <div id="image">
-        <img class="stub-image" width="1920px" height="1080px">
+        <script>
+          const canvas = document.createElement('canvas');
+          canvas.setAttribute('width', '1920px');
+          canvas.setAttribute('height', '1080px');
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#808080';
+          ctx.fillRect(0, 0, 1920, 1080);
+          document.write(`<img class="stub-image" src="${canvas.toDataURL()}" />`);
+        </script>
       </div>
       <div id="calendar">
         <div id="calendar_month">

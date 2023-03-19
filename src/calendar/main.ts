@@ -26,6 +26,8 @@ class CalendarRenderer {
     const year = this.date.getFullYear();
     const monthNum = this.date.getMonth() + 1;
     const month = `${monthNum}` as keyof typeof monthStr;
+    const dateToday = this.date.getDate();
+
     this.elMonthNum.innerHTML = month;
     this.elMonthStr.innerHTML = monthStr[month].long;
     this.elYear.innerHTML = `${year}`;
@@ -55,8 +57,14 @@ class CalendarRenderer {
       let cel = document.createElement('td');
       if(date > 0) {
         let innerHTML = `<span>${date}</span>`;
+
+        if(date === dateToday) {
+          cel.classList.add('today');
+        }
+
         if(holidayName[date]) {
-          innerHTML += `<span>${holidayName[date]}</span>`
+          cel.classList.add('holiday');
+          innerHTML += `<span class="holiday">${holidayName[date]}</span>`
         }
         cel.innerHTML = innerHTML;
       }
