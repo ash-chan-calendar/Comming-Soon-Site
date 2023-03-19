@@ -1,0 +1,25 @@
+$c-def-cream: #fff3b8;
+$c-def-cream-dark: #ddbf87;
+$c-def-cream-dark2: #c5a177;
+$c-def-blue: #3391ff;
+$c-def-blue-2: #3352dd;
+$c-def-black: #242424;
+$c-def-black-light: #333232;
+$c-def-black-light2: rgb(70, 67, 67)2;
+$c-def-white: #ffffff;
+
+:root {
+  --c-bg: #{$c-def-cream};
+  --c-bg-hover: #{$c-def-cream-dark};
+  --c-bg-active: #{$c-def-cream-dark2};
+  --c-text: #{$c-def-black};
+  --c-link: #{$c-def-blue};
+  --c-link-visited: #{$c-def-blue-2};
+
+  @media (prefers-color-scheme: dark) {
+    --c-bg: #{$c-def-black};
+    --c-bg-hover: #{$c-def-black-light};
+    --c-bg-active: #{$c-def-black-light2};
+    --c-text: #{$c-def-cream};
+  }
+}

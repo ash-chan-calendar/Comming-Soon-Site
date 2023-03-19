@@ -11,6 +11,7 @@ const config: Partial<esbuild.BuildOptions> = {
   entryPoints: [
     { in: path.join(srcPath, 'index', 'index.html'), out: 'index' },
     { in: path.join(srcPath, 'calendar', 'calendar.html'), out: 'calendar' },
+    { in: path.join(srcPath, 'index', 'style.scss'), out: 'index' }
   ],
   outdir: destPath,
   platform: 'browser',

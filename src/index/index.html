@@ -12,163 +12,153 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="アッシュちゃんカレンダー" />
     <meta name="twitter:description" content="ASH Chan Calendar" />
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="favicon/favicon.ico">
-
-    <style>
-      :root{
-        background-color: #fff3b8;
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 10px;
-      }
-      body{
-        margin: 0px;
-      }
-      a{
-        color: #3391ff;
-      }
-      .explain-parent{
-        text-align: center;
-        margin-top: 250px;
-        white-space: pre-line;
-      }
-      .explain{
-        padding-bottom: 100px;
-        text-align: justify;
-        white-space: pre-line;
-        display: inline-block;
-        /* word-wrap:normal; */
-      }
-      footer{
-        margin-top: 200px;
-        margin-bottom: 5px;
-        white-space: pre-line;
-        /* margin-right: 100px */
-        word-break: keep-all;
-      }
-      .logo-parent{
-        user-select: none;
-        -webkit-user-drag: none;
-        -moz-user-select: none;
-        pointer-events: none;
-        margin-top: 350px;
-      }
-      .logo{
-        /* background-color: gray; */
-        width: 80vw;
-        display: block;
-        margin-right: auto;
-        margin-left: auto;
-      }
-      .go_calendar{
-        /* white-space: pre-line; */
-      }
-      .twitter-tweet{
-        margin-right: auto;
-        margin-left: auto;
-        display: block;
-      }
-      .abstract{
-        white-space: normal;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root{
-          background-color:  #121212;
-          color: white;
-        }
-      }
-      /* 900px以下 */
-      @media screen and (max-width:900px){
-        :root{
-          font-size: 18px;
-        }
-        .logo{
-          /* width: 800px; */
-        }
-      }
-      @media screen and (min-width:1300px) {
-        :root{
-          font-size: 20px;
-        }
-        .logo{
-          width: 1000px;
-        }
-        .explain-parent{
-          margin-top: 200px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <script async src="https://platform.twitter.com/widgets.js"></script>
   </head>
   <!-- 開発陣への参加も待っていますー！ -->
   <!-- masiroiizo(twitterDM)まで～ -->
   <!-- 2022/8/29 -->
   <body>
-    <div class="logo-parent">
-      <picture>
+    <header>
+      <picture id="logo">
         <source srcset="imgs/2022_ACP_logo1_v1.1_W.png" media="(prefers-color-scheme: dark)">
-        <img class="logo" src="imgs/2022_ACP_logo1_v1.1_B.png">
+        <img class="logo" src="imgs/2022_ACP_logo1_v1.1_B.png" alt="" draggable="false">
       </picture>
-    </div>
+    </header>
 
-    <div class="explain-parent">
-      <div class="explain">
-          アッシュちゃんたちが作る．
-          アッシュちゃん好きのためのカレンダー.
+    <main>
+      <h1 class="screen-reader-text">アッシュちゃんカレンダー</h1>
 
-        <h2><a href="https://twitter.com/hashtag/アッシュちゃんカレンダー" target="_blank" rel="noopener noreferrer">
-          #アッシュちゃんカレンダー</a></h2>
+      <section id="overview">
+        <p>
+          アッシュちゃんたちが作る，アッシュちゃん好きのためのカレンダー.
+        </p>
 
-        ー　毎日をアッシュちゃんと暮らす.
+        <div class="view-on-twitter">
+          <a href="https://twitter.com/hashtag/アッシュちゃんカレンダー" target="_blank" rel="noopener noreferrer">
+            #アッシュちゃんカレンダー を Twitterで見る
+          </a>
+        </div>
 
+        <p>
+          ――毎日をアッシュちゃんと暮らす.
+        </p>
 
-        カレンダーのアッシュちゃんと
-        日々の思い出が結ばれる.
-      </div>
-      <div class="abstract">
-        <h1>概要</h1>
+        <p>
+          カレンダーのアッシュちゃんと日々の思い出が結ばれる.
+        </p>
+      </section>
 
-        <h2>アッシュちゃんの画像を集めて</h2>
-        <h2>Webカレンダーや</h2>
-        <h2>印刷できるカレンダーのデータ(企画中)</h2>
-        <h2>を作成するよ！</h2>
-        <h2>2023年版カレンダーを作るのが目標</h2>
+      <section id="project">
+        <h2>概要</h2>
 
+        <p>
+          アッシュちゃんの画像を集めて
+        </p>
 
-        <blockquote class="twitter-tweet" data-theme="dark"><p lang="ja" dir="ltr">アッシュちゃんカレンダーがほしい...</p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo) <a href="https://twitter.com/masiroiizo/status/1563365124622393344?ref_src=twsrc%5Etfw">August 27, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <ul>
+          <li>Webカレンダー</li>
+          <li>印刷できるカレンダーのデータ（企画中）</li>
+        </ul>
 
-        <blockquote class="twitter-tweet" data-theme="dark"><p lang="ja" dir="ltr">アッシュちゃんカレンダー</p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo) <a href="https://twitter.com/masiroiizo/status/1563367391719215105?ref_src=twsrc%5Etfw">August 27, 2022</a></blockquote>
+        <p>
+          を作成するよ！
+        </p>
 
-        <blockquote class="twitter-tweet" data-theme="dark"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/%E3%82%A2%E3%83%83%E3%82%B7%E3%83%A5%E3%81%A1%E3%82%83%E3%82%93%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC?src=hash&amp;ref_src=twsrc%5Etfw">#アッシュちゃんカレンダー</a><a href="https://twitter.com/fradol_vr?ref_src=twsrc%5Etfw">@fradol_vr</a> 氏がロゴを作ってくれましたー！<br>改善案を反映してくれてありがたい🙏 <a href="https://t.co/3hs9zRIiS8">pic.twitter.com/3hs9zRIiS8</a></p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo) <a href="https://twitter.com/masiroiizo/status/1563859971657592832?ref_src=twsrc%5Etfw">August 28, 2022</a></blockquote>
+        <p>
+          2023年版カレンダーを作るのが目標
+        </p>
 
-        <blockquote class="twitter-tweet" data-theme="dark"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/%E3%82%A2%E3%83%83%E3%82%B7%E3%83%A5%E3%81%A1%E3%82%83%E3%82%93%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC?src=hash&amp;ref_src=twsrc%5Etfw">#アッシュちゃんカレンダー</a><br>も。！？ <a href="https://t.co/ADSViwY6KL">pic.twitter.com/ADSViwY6KL</a></p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo) <a href="https://twitter.com/masiroiizo/status/1563865139690242050?ref_src=twsrc%5Etfw">August 28, 2022</a></blockquote>
-      </div>
-      <div class="join">
-        <h1>参加</h1>
-        <h3>参加する場合は画像を投稿してねー！</h3>
-        <h2>締め切り未定！</h2>
-        1 → 2 → 3 → 🎉🎉
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="ja" dir="ltr">アッシュちゃんカレンダーがほしい...</p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo)
+          <a href="https://twitter.com/masiroiizo/status/1563365124622393344?ref_src=twsrc%5Etfw">August 27, 2022</a>
+        </blockquote>
 
-        <h2>1.<a href="https://docs.google.com/spreadsheets/d/1LQGq0uQAk4ZPo5CNSvyfX1jACSkmTpk9Gi8Yc4bL04A/edit?usp=sharing" target="_blank" rel="noopener noreferrer">参加するときに記入するリスト！</a></h2>
-        <h2>2.<a href="https://forms.gle/1Uu9Kq1RrWkWVTMM9" target="_blank" rel="noopener noreferrer">同意するばしょ！</a></h2>
-        <h2>3.<a href="https://forms.gle/hUR4SSy2fHYxnMKP7" target="_blank" rel="noopener noreferrer">画像を提出するばしょ！</a></h2>
-      </div>
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="ja" dir="ltr">アッシュちゃんカレンダー</p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo)
+          <a href="https://twitter.com/masiroiizo/status/1563367391719215105?ref_src=twsrc%5Etfw">August 27, 2022</a>
+        </blockquote>
 
-      <div class="go_calendar">
-        <!-- 🚧<a href="ash_calendar.html" >View Calendar</a>🚧 -->
-        🚧<a href="https://masirof.github.io/ASH_PJ/" target="_blank" rel="noopener noreferrer">View Calendar</a>🚧
-        工事中！入るなー！
-        (別プロジェクトに飛びます)
-        <img src="https://drive.google.com/u/0/open?usp=forms_web&id=1WPtg6ru2wZ7UY4uOxeHo0HVC-Stmy5T0" alt="">
-      </div>
-    </div>
-    <div class="join_parent">
-    </div>
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="ja" dir="ltr"><a
+              href="https://twitter.com/hashtag/%E3%82%A2%E3%83%83%E3%82%B7%E3%83%A5%E3%81%A1%E3%82%83%E3%82%93%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC?src=hash&amp;ref_src=twsrc%5Etfw">#アッシュちゃんカレンダー</a><a
+              href="https://twitter.com/fradol_vr?ref_src=twsrc%5Etfw">@fradol_vr</a> 氏がロゴを作ってくれましたー！<br>改善案を反映してくれてありがたい🙏 <a
+              href="https://t.co/3hs9zRIiS8">pic.twitter.com/3hs9zRIiS8</a></p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo) <a
+            href="https://twitter.com/masiroiizo/status/1563859971657592832?ref_src=twsrc%5Etfw">August 28, 2022</a>
+        </blockquote>
+
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="ja" dir="ltr"><a
+              href="https://twitter.com/hashtag/%E3%82%A2%E3%83%83%E3%82%B7%E3%83%A5%E3%81%A1%E3%82%83%E3%82%93%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC?src=hash&amp;ref_src=twsrc%5Etfw">#アッシュちゃんカレンダー</a><br>も。！？
+            <a href="https://t.co/ADSViwY6KL">pic.twitter.com/ADSViwY6KL</a></p>&mdash; 𝗆𝖺𝗌𝗂𝗋𝗈𝗂𝗂𝗓𝗈 (@masiroiizo) <a
+            href="https://twitter.com/masiroiizo/status/1563865139690242050?ref_src=twsrc%5Etfw">August 28, 2022</a>
+        </blockquote>
+      </section>
+
+      <section id="join">
+        <h2>参加について</h2>
+
+        <p>
+          参加する場合は画像を投稿してねー！締め切り未定！
+        </p>
+
+        <p>
+          1 → 2 → 3 → 🎉🎉
+        </p>
+
+        <ol>
+          <li>
+            <a href="https://docs.google.com/spreadsheets/d/1LQGq0uQAk4ZPo5CNSvyfX1jACSkmTpk9Gi8Yc4bL04A/edit?usp=sharing"
+              target="_blank" rel="noopener noreferrer">
+              参加するときに記入するリスト！
+            </a>
+          </li>
+          <li>
+            <a href="https://forms.gle/1Uu9Kq1RrWkWVTMM9" target="_blank" rel="noopener noreferrer">
+              同意するばしょ！
+            </a>
+          </li>
+          <li>
+            <a href="https://forms.gle/hUR4SSy2fHYxnMKP7" target="_blank" rel="noopener noreferrer">
+              画像を提出するばしょ！
+            </a>
+          </li>
+        </ol>
+      </section>
+
+      <section id="go_calendar">
+        <p>
+          <!-- 🚧<a href="ash_calendar.html" >View Calendar</a>🚧 -->
+          🚧<a href="https://masirof.github.io/ASH_PJ/" target="_blank" rel="noopener noreferrer">View Calendar</a>🚧
+        </p>
+
+        <p>
+          工事中！入るなー！
+          (別プロジェクトに飛びます)
+        </p>
+
+        <p>
+          <!-- ↓これ何 -->
+          <img src="https://drive.google.com/u/0/open?usp=forms_web&id=1WPtg6ru2wZ7UY4uOxeHo0HVC-Stmy5T0" alt="">
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      Ash Calendar Project. Contribute by <a
+      href="https://twitter.com/masiroiizo">masiroiizo</a>, <a
+      href="https://twitter.com/vreater0120">eater</a>, <a
+      href="https://twitter.com/Hana_VRC">Hana</a>, <a
+      href="https://twitter.com/fradol_vr">Fradol</a>, <a
+      href="https://twitter.com/whiaka">も。</a>, <a
+      href="https://github.com/aomoriringo">aomoriringo</a>, <a
+      href="https://twitter.com/honahuku_vrc">ほなふく</a>, <a
+      href="https://twitter.com/Kaonasy_1000">かおなし</a>, <a
+      href="https://twitter.com/maguro869">maguro</a>. Thanks for all Ash users. ASH-CHAN(<a
+      href="https://booth.pm/ja/items/3234473">Booth</a>).
+    </footer>
   </body>
-  <footer>
-    Ash Calendar Project. Contribute by <a href="https://twitter.com/masiroiizo">masiroiizo</a>, <a href="https://twitter.com/vreater0120">eater</a>, <a href="https://twitter.com/Hana_VRC">Hana</a>, <a href="https://twitter.com/fradol_vr">Fradol</a>, <a href="https://twitter.com/whiaka">も。</a>, <a href="https://github.com/aomoriringo">aomoriringo</a>, <a href="https://twitter.com/honahuku_vrc">ほなふく</a>, <a href="https://twitter.com/Kaonasy_1000">かおなし</a>, <a href="https://twitter.com/maguro869">maguro</a>.
-    Thanks for all Ash users. ASH-CHAN(<a href="https://booth.pm/ja/items/3234473">Booth</a>).
-  </footer>
 </html>

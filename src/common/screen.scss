@@ -1,0 +1,26 @@
+$screen-width-medium: 900px;
+$screen-width-large: 1024px;
+
+@mixin screen-small {
+  @media screen and (max-width: $screen-width-medium) {
+    @content;
+  }
+}
+
+@mixin screen-medium {
+  @media screen and (min-width: $screen-width-medium) and (max-width: $screen-width-large) {
+    @content;
+  }
+}
+
+@mixin screen-large {
+  @media screen and (min-width: $screen-width-large) {
+    @content;
+  }
+}
+
+@mixin screen-lt-medium {
+  @media screen and (max-width: $screen-width-large) {
+    @content;
+  }
+}

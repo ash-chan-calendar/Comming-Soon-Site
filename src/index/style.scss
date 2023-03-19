@@ -1,0 +1,52 @@
+@import "../common/style.scss";
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.twitter-tweet {
+  margin: 0 auto;
+  display: block;
+}
+
+.view-on-twitter {
+  display: inline-block;
+  padding: 0.5em 2em;
+  background-color: $c-def-blue;
+  border-radius: 1em;
+
+  * {
+    color: $c-def-white;
+  }
+}
+
+picture#logo {
+  img {
+    display: block;
+    margin: 20% auto;
+    max-width: 60rem;
+    width: 80%;
+  }
+}
+
+main {
+  > section {
+    max-width: 40rem;
+    margin: 0 auto;
+    text-align: center;
+
+    ul, ol {
+      display: inline-block;
+      text-align: left;
+    }
+  }
+}
+
+footer {
+  margin-top: 2em;
+  padding: 3em 1em;
+  background-color: $c-def-black;
+  border-top: 2px solid $c-def-cream;
+  color: $c-def-cream;
+}

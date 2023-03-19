@@ -1,0 +1,21 @@
+@import "./defs.scss";
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: "Kiwi Maru", Arial, Helvetica, sans-serif;
+
+  font-size: 20px;
+  line-height: 1.25em;
+  @include screen-lt-medium {
+    font-size: 24px;
+  }
+}
+
+a {
+  color: var(--c-link);
+
+  &:visited {
+    color: var(--c-link-visited);
+  }
+}
