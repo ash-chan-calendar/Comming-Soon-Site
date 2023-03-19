@@ -3,15 +3,22 @@
   "version": "0.1.0",
   "description": "https://ash-cale.com",
   "git repository": "https://github.com/ash-chan-calendar/ASH-CHAN-Calendar",
-  "scripts": {},
+  "scripts": {
+    "lint": "npx eslint .",
+    "fmt": "npx prettier --write .",
+    "build": "npx ts-node build.ts",
+    "dev": "npx ts-node build.ts --dev",
+    "watch": "npx ts-node build.ts --dev --watch",
+    "clean": "rm -rf dist/"
+  },
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@chialab/esbuild-plugin-html": "0.17",
     "esbuild": "0.17",
     "esbuild-sass-plugin": "2",
     "eslint": "8",
     "eslint-config-prettier": "8",
+    "glob": "^9.3.0",
     "prettier": "2",
     "ts-node": "10",
     "typescript": "5"
