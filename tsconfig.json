@@ -1,0 +1,32 @@
+{
+	"include": [
+		"src/**/*",
+		"build.ts"
+	],
+	"exclude": [],
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "commonjs",
+		"sourceMap": true,
+		"removeComments": true,
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
+		"allowJs": true,
+		"strict": true,
+		"noImplicitThis": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"newLine": "LF",
+		"noImplicitAny": true,
+		"strictNullChecks": true
+	}
+}
