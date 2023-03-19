@@ -1,4 +1,18 @@
 {
+  "month_str": {
+    "1": { "long": "January", "short": "Jan" },
+    "2": { "long": "February", "short": "Feb" },
+    "3": { "long": "March", "short": "Mar" },
+    "4": { "long": "April", "short": "Apr" },
+    "5": { "long": "May", "short": "May" },
+    "6": { "long": "June", "short": "Jun" },
+    "7": { "long": "July", "short": "Jul" },
+    "8": { "long": "August", "short": "Aug" },
+    "9": { "long": "September", "short": "Sep" },
+    "10": { "long": "October", "short": "Oct" },
+    "11": { "long": "November", "short": "Nov" },
+    "12": { "long": "December", "short": "Dec" }
+  },
   "holidays": [
     { "year": 2023, "month": 1, "day": 1, "name": "元日" },
     { "year": 2023, "month": 1, "day": 2, "name": "振替休日" },
