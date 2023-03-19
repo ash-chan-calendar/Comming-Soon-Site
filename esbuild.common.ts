@@ -9,7 +9,8 @@ const destPath = path.join(__dirname, 'dist');
 
 const config: Partial<esbuild.BuildOptions> = {
   entryPoints: [
-    path.join(srcPath, 'calendar', 'main.ts')
+    { in: path.join(srcPath, 'index', 'index.html'), out: 'index' },
+    { in: path.join(srcPath, 'calendar', 'calendar.html'), out: 'calendar' },
   ],
   outdir: destPath,
   platform: 'browser',
@@ -25,15 +26,8 @@ const config: Partial<esbuild.BuildOptions> = {
       baseDir: srcPath,
       baseOutDir: destPath,
       files: [
-        { from: 'index/index.html', to: 'index.html' },
-        { from: 'calendar/calendar.html', to: 'calendar.html' },
-      ],
-    }),
-    copyPlugin({
-      baseDir: path.join(srcPath, 'res'),
-      baseOutDir: destPath,
-      files: [
-        { from: '**/*', to: '[path]/[name][ext]' }
+        { from: 'imgs/**/*', to: '[path]/[name][ext]' },
+        { from: 'favicon/**/*', to: '[path]/[name][ext]' },
       ]
     }),
   ],
