@@ -9,7 +9,8 @@
     "build": "npx ts-node build.ts",
     "dev": "npx ts-node build.ts --dev",
     "watch": "npx ts-node build.ts --dev --watch",
-    "clean": "rm -rf dist/"
+    "clean": "rm -rf dist/",
+    "index": "npx ts-node scripts/createImageIndex.ts"
   },
   "author": "",
   "license": "UNLICENSED",

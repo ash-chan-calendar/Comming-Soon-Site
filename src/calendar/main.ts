@@ -1,34 +1,41 @@
 import { getElementByIdOrThrow } from "../common/util";
 import { CalendarDate, CalendarRenderer } from "./calendarRenderer";
 
+const imageIndexUrl = new URL('imageIndex.json', location.origin + location.pathname);
+const defaultImageUrl = new URL('imgs/calendar_default.png', location.origin + location.pathname);
+let imageIndex: Record<string, string> | null = null;
+
+const getImageIndex = async function () {
+  const res = await fetch(imageIndexUrl);
+  if(!res.ok) {
+    imageIndex = {};
+    return imageIndex;
+  }
+
+  const text = await res.text();
+  imageIndex = JSON.parse(text);
+
+  return imageIndex as Record<string, string>;
+}
+
 const getImageUrl = async function(year: number, month: number, day: number) {
   const yearStr = (`000${year}`).slice(-4);
   const monthStr = (`0${month}`).slice(-2);
   const dayStr = (`0${day}`).slice(-2);
-  const urlBase = `https://raw.githubusercontent.com/ash-chan-calendar/image/master/${yearStr}${monthStr}${dayStr}`;
 
-  const blobToURL = (blob: Blob) => URL.createObjectURL(blob);
+  const imageIndex = await getImageIndex();
+  const imageUrl = imageIndex[`${yearStr}${monthStr}${dayStr}`];
 
-  const url = Promise.any([
-    fetch(urlBase + '.png').then((res) => {
-      if (res.ok) {
-        return res.blob().then(blobToURL);
-      }
-      throw Error();
-    }),
-    fetch(urlBase + '.jpg').then((res) => {
-      if (res.ok) {
-        return res.blob().then(blobToURL);
-      }
-      throw Error();
-    }),
-    fetch(urlBase + '.jpeg').then((res) => {
-      if (res.ok) {
-        return res.blob().then(blobToURL);
-      }
-      throw Error();
-    })
-  ]).catch(() => '/imgs/2022_ACP_logo1_v1.1_B.png');
+  if(!imageUrl) {
+    return defaultImageUrl.toString();
+  }
+
+  const url = await fetch(imageUrl).then((res) => {
+    if (res.ok) {
+      return res.blob().then(URL.createObjectURL);
+    }
+    throw Error();
+  }).catch(() => defaultImageUrl.toString());
 
   return url;
 }
