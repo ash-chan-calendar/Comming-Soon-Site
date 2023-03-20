@@ -49,4 +49,7 @@ const createImageIndex = async function(){
   return index;
 }
 
-createImageIndex().then((index) => fs.writeFile(outputPath, JSON.stringify(index)));
+Promise.all([
+  fs.mkdir(path.dirname(outputPath)),
+  createImageIndex()
+]).then((index) => fs.writeFile(outputPath, JSON.stringify(index)));
