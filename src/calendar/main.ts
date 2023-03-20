@@ -1,13 +1,19 @@
-import { getElementByIdOrThrow } from "../common/util";
-import { CalendarDate, CalendarRenderer } from "./calendarRenderer";
+import { getElementByIdOrThrow } from '../common/util';
+import { CalendarDate, CalendarRenderer } from './calendarRenderer';
 
-const imageIndexUrl = new URL('imageIndex.json', location.origin + location.pathname);
-const defaultImageUrl = new URL('imgs/calendar_default.png', location.origin + location.pathname);
+const imageIndexUrl = new URL(
+  'imageIndex.json',
+  location.origin + location.pathname
+);
+const defaultImageUrl = new URL(
+  'imgs/calendar_default.png',
+  location.origin + location.pathname
+);
 let imageIndex: Record<string, string> | null = null;
 
 const getImageIndex = async function () {
   const res = await fetch(imageIndexUrl);
-  if(!res.ok) {
+  if (!res.ok) {
     imageIndex = {};
     return imageIndex;
   }
@@ -16,29 +22,31 @@ const getImageIndex = async function () {
   imageIndex = JSON.parse(text);
 
   return imageIndex as Record<string, string>;
-}
+};
 
-const getImageUrl = async function(year: number, month: number, day: number) {
-  const yearStr = (`000${year}`).slice(-4);
-  const monthStr = (`0${month}`).slice(-2);
-  const dayStr = (`0${day}`).slice(-2);
+const getImageUrl = async function (year: number, month: number, day: number) {
+  const yearStr = `000${year}`.slice(-4);
+  const monthStr = `0${month}`.slice(-2);
+  const dayStr = `0${day}`.slice(-2);
 
   const imageIndex = await getImageIndex();
   const imageUrl = imageIndex[`${yearStr}${monthStr}${dayStr}`];
 
-  if(!imageUrl) {
+  if (!imageUrl) {
     return defaultImageUrl.toString();
   }
 
-  const url = await fetch(imageUrl).then((res) => {
-    if (res.ok) {
-      return res.blob().then(URL.createObjectURL);
-    }
-    throw Error();
-  }).catch(() => defaultImageUrl.toString());
+  const url = await fetch(imageUrl)
+    .then((res) => {
+      if (res.ok) {
+        return res.blob().then(URL.createObjectURL);
+      }
+      throw Error();
+    })
+    .catch(() => defaultImageUrl.toString());
 
   return url;
-}
+};
 
 window.addEventListener('load', () => {
   const elMonthNum = getElementByIdOrThrow('calendar_month_number');
@@ -59,7 +67,7 @@ window.addEventListener('load', () => {
     ).then((url) => {
       elImage.src = url;
     });
-  }
+  };
 
   const renderer = new CalendarRenderer(
     elMonthNum,
@@ -67,7 +75,7 @@ window.addEventListener('load', () => {
     elYearNum,
     elDaysTbody,
     CalendarDate.fromDate(new Date()),
-    function() {
+    function () {
       renderImage();
     }
   );
@@ -78,7 +86,7 @@ window.addEventListener('load', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year,
       renderer.dateShowing.month - 1,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });
@@ -86,7 +94,7 @@ window.addEventListener('load', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year,
       renderer.dateShowing.month + 1,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });
@@ -94,7 +102,7 @@ window.addEventListener('load', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year - 1,
       renderer.dateShowing.month,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });
@@ -102,7 +110,7 @@ window.addEventListener('load', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year + 1,
       renderer.dateShowing.month,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });

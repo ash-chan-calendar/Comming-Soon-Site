@@ -4,27 +4,28 @@ import path from 'node:path';
 // create image index file from specific GitHub repository
 // and export to file as JSON with type { "[date]": "[url]" }
 
-const repoEndPoint = 'https://api.github.com/repos/ash-chan-calendar/image/contents/';
+const repoEndPoint =
+  'https://api.github.com/repos/ash-chan-calendar/image/contents/';
 const outputPath = path.resolve(__dirname, '..', 'dist', 'imageIndex.json');
 
 interface repoContentItem {
-  name: string,
-  path: string,
-  sha: string,
-  size: number,
-  url: string,
-  html_url: string,
-  git_url: string,
-  download_url: string,
-  type: string,
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  url: string;
+  html_url: string;
+  git_url: string;
+  download_url: string;
+  type: string;
   _links: {
-    self: string,
-    git: string,
-    html: string,
-  },
+    self: string;
+    git: string;
+    html: string;
+  };
 }
 
-const createImageIndex = async function(){
+const createImageIndex = async function () {
   const res = await fetch(repoEndPoint);
 
   if (!res.ok) {
@@ -34,7 +35,7 @@ const createImageIndex = async function(){
   const index: Record<string, string> = {};
   const nameRegExp = /(?<date>\d\d\d\d\d\d\d\d)\.(png|jpg|jpeg|gif|svg)/;
 
-  const text = await res.text()
+  const text = await res.text();
   const items = JSON.parse(text) as repoContentItem[];
   for (const item of items) {
     const nameMatch = item.name.match(nameRegExp);
@@ -47,9 +48,8 @@ const createImageIndex = async function(){
   }
 
   return index;
-}
+};
 
-Promise.all([
-  fs.mkdir(path.dirname(outputPath)),
-  createImageIndex()
-]).then((index) => fs.writeFile(outputPath, JSON.stringify(index)));
+Promise.all([fs.mkdir(path.dirname(outputPath)), createImageIndex()]).then(
+  (index) => fs.writeFile(outputPath, JSON.stringify(index))
+);

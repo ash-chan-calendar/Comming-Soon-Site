@@ -23,12 +23,14 @@ const buildResultPlugin = (): esbuild.Plugin => {
 
         if (result.errors.length > 0) {
           console.log(
-            `\x1b[1m${getTimeString()}\x1b[0m Build failed with ${result.errors.length
+            `\x1b[1m${getTimeString()}\x1b[0m Build failed with ${
+              result.errors.length
             } errors.`
           );
         } else {
           console.log(
-            `\x1b[1m${getTimeString()}\x1b[0m Build succeeded in ${endTime - startTime
+            `\x1b[1m${getTimeString()}\x1b[0m Build succeeded in ${
+              endTime - startTime
             }ms`
           );
         }

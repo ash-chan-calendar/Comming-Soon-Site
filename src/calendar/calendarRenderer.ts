@@ -1,4 +1,4 @@
-import { holidays, month_str as monthStr } from "./calendar.json";
+import { holidays, month_str as monthStr } from './calendar.json';
 
 class CalendarDate {
   year: number;
@@ -30,7 +30,7 @@ class CalendarDate {
   normalized() {
     return CalendarDate.fromDate(this.toDate());
   }
-};
+}
 
 class CalendarRenderer {
   elMonthNum: HTMLElement;
@@ -60,16 +60,16 @@ class CalendarRenderer {
   cellLinkClickListener = (e: MouseEvent) => {
     const cel = (e.target as HTMLElement)?.parentElement;
     if (!cel) {
-      throw Error("Failed to get calendar table cel");
+      throw Error('Failed to get calendar table cel');
     }
 
     this.dateShowing = new CalendarDate(
       this.dateShowing.year,
       this.dateShowing.month,
-      parseInt(cel.dataset.date ?? "1")
+      parseInt(cel.dataset.date ?? '1')
     );
     this.render();
-  }
+  };
 
   render() {
     const monthKey = `${this.dateShowing.month}` as keyof typeof monthStr;
@@ -94,35 +94,44 @@ class CalendarRenderer {
       1
     ).getDay();
 
-    const holidayNames = new Array(monthEnd)
-      .fill(undefined) as (string | undefined)[];
+    const holidayNames = new Array(monthEnd).fill(undefined) as (
+      | string
+      | undefined
+    )[];
 
-    holidays.filter((holiday) => {
-      return holiday.year === this.dateShowing.year
-        && holiday.month === this.dateShowing.month;
-    }).forEach((holiday) => {
-      holidayNames[holiday.day] = holiday.name;
-    });
+    holidays
+      .filter((holiday) => {
+        return (
+          holiday.year === this.dateShowing.year &&
+          holiday.month === this.dateShowing.month
+        );
+      })
+      .forEach((holiday) => {
+        holidayNames[holiday.day] = holiday.name;
+      });
 
     // Today's date if the displayed year and month match
     // the current ones, -1 otherwise
-    const dateToday = (
-      this.dateToday.year === this.dateShowing.year
-      && this.dateToday.month === this.dateShowing.month
-      ? this.dateToday.date
-      : -1
-    );
+    const dateToday =
+      this.dateToday.year === this.dateShowing.year &&
+      this.dateToday.month === this.dateShowing.month
+        ? this.dateToday.date
+        : -1;
     // create calendar table (number[][])
     // [[-1,  0,  1,  2,  3,  4,  5],
     //    6,  7,  8,  9, 10, 11, 12],
     //   ...]
     const calendarWidth = 7;
     const calendarHeight = 5;
-    const dateTable = new Array(calendarHeight).fill(0).map((_, row) => (
-      new Array(calendarWidth).fill(0).map((_, column) => (
-        row * calendarWidth + column - weekOfDayFirstDay + 1
-      ))
-    ));
+    const dateTable = new Array(calendarHeight)
+      .fill(0)
+      .map((_, row) =>
+        new Array(calendarWidth)
+          .fill(0)
+          .map(
+            (_, column) => row * calendarWidth + column - weekOfDayFirstDay + 1
+          )
+      );
     const elRows = dateTable.map((row) => {
       const elRow = document.createElement('tr');
       const elCells = row.map((date) => {
@@ -137,7 +146,7 @@ class CalendarRenderer {
         elLink.addEventListener('click', this.cellLinkClickListener);
         elCell.appendChild(elLink);
 
-        const holidayName = holidayNames[date]
+        const holidayName = holidayNames[date];
         if (holidayName) {
           const elHoliday = document.createElement('span');
           elHoliday.textContent = holidayName;
@@ -146,10 +155,10 @@ class CalendarRenderer {
 
           elCell.classList.add('holiday');
         }
-        if(date === dateToday) {
+        if (date === dateToday) {
           elCell.classList.add('today');
         }
-        if(date === this.dateShowing.date) {
+        if (date === this.dateShowing.date) {
           elCell.classList.add('showing');
         }
 
@@ -173,7 +182,4 @@ class CalendarRenderer {
   }
 }
 
-export {
-  CalendarDate,
-  CalendarRenderer,
-};
+export { CalendarDate, CalendarRenderer };
