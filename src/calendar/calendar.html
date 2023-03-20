@@ -11,22 +11,36 @@
   <body>
     <main>
       <div id="image">
-        <script>
-          const canvas = document.createElement('canvas');
-          canvas.setAttribute('width', '1920px');
-          canvas.setAttribute('height', '1080px');
-          const ctx = canvas.getContext('2d');
-          ctx.fillStyle = '#808080';
-          ctx.fillRect(0, 0, 1920, 1080);
-          document.write(`<img class="stub-image" src="${canvas.toDataURL()}" />`);
-        </script>
+        <img id="calendar_image" src="" alt="">
       </div>
       <div id="calendar">
         <div id="calendar_month">
+          <a id="calendar_month_prev" class="button-prev">
+            <span class="material-symbols-outlined">
+              arrow_back_ios
+            </span>
+          </a>
           <div id="calendar_month_number"></div>
           <div id="calendar_month_string"></div>
+          <a id="calendar_month_next" class="button-next">
+            <span class="material-symbols-outlined">
+              arrow_forward_ios
+            </span>
+          </a>
         </div>
-        <div id="calendar_year"></div>
+        <div id="calendar_year">
+          <a id="calendar_year_prev" class="button-prev">
+            <span class="material-symbols-outlined">
+              arrow_back_ios
+            </span>
+          </a>
+          <div id="calendar_year_number"></div>
+          <a id="calendar_year_next" class="button-next">
+            <span class="material-symbols-outlined">
+              arrow_forward_ios
+            </span>
+          </a>
+        </div>
         <div id="calendar_days">
           <table>
             <thead>
