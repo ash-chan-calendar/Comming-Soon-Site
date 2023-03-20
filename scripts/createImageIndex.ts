@@ -1,6 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+// create image index file from specific GitHub repository
+// and export to file as JSON with type { "[date]": "[url]" }
+
 const repoEndPoint = 'https://api.github.com/repos/ash-chan-calendar/image/contents/';
 const outputPath = path.resolve(__dirname, '..', 'dist', 'imageIndex.json');
 
