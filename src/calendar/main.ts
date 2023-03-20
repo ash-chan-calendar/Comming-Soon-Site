@@ -1,111 +1,5 @@
-import { holidays, month_str as monthStr } from "./calendar.json";
 import { getElementByIdOrThrow } from "../common/util";
-
-class CalendarRenderer {
-  elMonthNum: HTMLElement;
-  elMonthStr: HTMLElement;
-  elYear: HTMLElement;
-  elDaysTbody: HTMLElement;
-  date: Date;
-  onRenderEnded: (() => void) | undefined;
-
-  constructor(
-    elMonthNum: HTMLElement,
-    elMonthStr: HTMLElement,
-    elYear: HTMLElement,
-    elDaysTbody: HTMLElement,
-    date: Date,
-    onRenderEnded?: () => void
-  ) {
-    this.elMonthNum = elMonthNum;
-    this.elMonthStr = elMonthStr;
-    this.elYear = elYear;
-    this.elDaysTbody = elDaysTbody;
-    this.date = date;
-    this.onRenderEnded = onRenderEnded;
-  }
-
-  render() {
-    const year = this.date.getFullYear();
-    const monthNum = this.date.getMonth() + 1;
-    const month = `${monthNum}` as keyof typeof monthStr;
-
-    const dateToday = this.date.getDate();
-
-    this.elMonthNum.innerHTML = month;
-    this.elMonthStr.innerHTML = monthStr[month].long;
-    this.elYear.innerHTML = `${year}`;
-    this.elDaysTbody.innerHTML = '';
-
-    const monthEnd = new Date(
-      this.date.getFullYear(),
-      this.date.getMonth() + 1,
-      0
-    ).getDate();
-    const weekOfDayStart = new Date(
-      this.date.getFullYear(),
-      this.date.getMonth(),
-      1
-    ).getDay();
-
-    const holidayName: (string | undefined)[] = new Array(monthEnd).fill(undefined);
-    holidays.filter((holiday) => {
-      return holiday.year === year && holiday.month === monthNum;
-    }).forEach((holiday) => {
-      holidayName[holiday.day] = holiday.name;
-    });
-
-    const celClickListener = (cel: HTMLElement) => () => {
-      this.date = new Date(
-        year,
-        monthNum - 1,
-        parseInt(cel.dataset.date ?? '1')
-      );
-      this.render();
-    }
-
-    let row = document.createElement('tr');
-    let rowCount = 0;
-    let date = 1 - weekOfDayStart;
-    while(date <= monthEnd) {
-      let cel = document.createElement('td');
-      if(date > 0) {
-        let innerHTML = `<span>${date}</span>`;
-
-        if(date === dateToday) {
-          cel.classList.add('today');
-        }
-
-        if(holidayName[date]) {
-          cel.classList.add('holiday');
-          innerHTML += `<span class="holiday">${holidayName[date]}</span>`
-        }
-        cel.innerHTML = innerHTML;
-        cel.dataset.date = date.toString();
-
-        cel.addEventListener('click', celClickListener(cel));
-      }
-      row.appendChild(cel);
-
-      rowCount += 1;
-      if(rowCount === 7) {
-        rowCount = 0;
-
-        this.elDaysTbody.appendChild(row);
-        row = document.createElement('tr');
-      }
-
-      date += 1;
-    }
-    if(rowCount !== 0) {
-      this.elDaysTbody.appendChild(row);
-    }
-
-    if(this.onRenderEnded) {
-      this.onRenderEnded();
-    }
-  }
-}
+import { CalendarDate, CalendarRenderer } from "./calendarRenderer";
 
 const getImageUrl = async function(year: number, month: number, day: number) {
   const yearStr = (`000${year}`).slice(-4);
@@ -152,9 +46,9 @@ window.addEventListener('load', () => {
   const elImage = getElementByIdOrThrow('calendar_image') as HTMLImageElement;
   const renderImage = function () {
     getImageUrl(
-      renderer.date.getFullYear(),
-      renderer.date.getMonth() + 1,
-      renderer.date.getDate()
+      renderer.dateShowing.year,
+      renderer.dateShowing.month,
+      renderer.dateShowing.date
     ).then((url) => {
       elImage.src = url;
     });
@@ -165,7 +59,7 @@ window.addEventListener('load', () => {
     elMonthStr,
     elYearNum,
     elDaysTbody,
-    new Date(),
+    CalendarDate.fromDate(new Date()),
     function() {
       renderImage();
     }
@@ -174,55 +68,35 @@ window.addEventListener('load', () => {
 
   // set month and year switch button listener
   elMonthPrev.addEventListener('click', () => {
-    const date = renderer.date;
-    renderer.date = new Date(
-      date.getFullYear(),
-      date.getMonth() - 1,
-      date.getDate(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds(),
-      date.getMilliseconds()
-    );
+    renderer.dateShowing = new CalendarDate(
+      renderer.dateShowing.year,
+      renderer.dateShowing.month - 1,
+      renderer.dateShowing.date,
+    ).normalized();
     renderer.render();
   });
   elMonthNext.addEventListener('click', () => {
-    const date = renderer.date;
-    renderer.date = new Date(
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds(),
-      date.getMilliseconds()
-    );
+    renderer.dateShowing = new CalendarDate(
+      renderer.dateShowing.year,
+      renderer.dateShowing.month + 1,
+      renderer.dateShowing.date,
+    ).normalized();
     renderer.render();
   });
   elYearPrev.addEventListener('click', () => {
-    const date = renderer.date;
-    renderer.date = new Date(
-      date.getFullYear() - 1,
-      date.getMonth(),
-      date.getDate(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds(),
-      date.getMilliseconds()
-    );
+    renderer.dateShowing = new CalendarDate(
+      renderer.dateShowing.year - 1,
+      renderer.dateShowing.month,
+      renderer.dateShowing.date,
+    ).normalized();
     renderer.render();
   });
   elYearNext.addEventListener('click', () => {
-    const date = renderer.date;
-    renderer.date = new Date(
-      date.getFullYear() + 1,
-      date.getMonth(),
-      date.getDate(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds(),
-      date.getMilliseconds()
-    );
+    renderer.dateShowing = new CalendarDate(
+      renderer.dateShowing.year + 1,
+      renderer.dateShowing.month,
+      renderer.dateShowing.date,
+    ).normalized();
     renderer.render();
   });
 });
