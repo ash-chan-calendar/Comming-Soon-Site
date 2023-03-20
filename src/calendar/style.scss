@@ -15,11 +15,15 @@ footer {
 }
 
 main {
+  max-width: 40em;
+  margin: 0 auto;
+  margin-top: 1em;
+
   > #image {
     width: 100%;
 
     img {
-      max-width: 100%;
+      display: block;
       width: 100%;
       background-color: #808080;
     }
@@ -36,6 +40,7 @@ main {
       grid-row: 1 / 2;
       grid-column: 1 / 2;
       align-items: end;
+      padding: 0 2em;
 
       > #calendar_month_number {
         display: inline;
@@ -54,6 +59,7 @@ main {
       display: flex;
       align-items: flex-end;
       justify-content: end;
+      padding: 0 2em;
     }
 
     > #calendar_days {
