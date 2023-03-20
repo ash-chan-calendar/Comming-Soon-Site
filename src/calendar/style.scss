@@ -10,8 +10,6 @@ body {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   padding: 3em 1em;
   background-color: $c-def-black;
   border-top: 2px solid $c-def-cream;
@@ -128,9 +126,17 @@ main {
         margin-top: 0.25em;
 
         td {
-          text-align: center;
-          padding: 0.25em 1em;
           position: relative;
+          text-align: center;
+          // box-sizing: border-box does not work
+          border: 2px solid transparent;
+
+          a {
+            display: block;
+            padding: 0.25em 1em;
+            color: inherit;
+            text-decoration: inherit;
+          }
 
           &:hover {
             border-radius: 0.5em;
@@ -140,6 +146,11 @@ main {
           &.today {
             border-radius: 0.5em;
             background-color: var(--c-bg-hover);
+          }
+
+          &.showing {
+            border-radius: 0.5em;
+            border-color: var(--c-bg-active);
           }
 
           &.holiday {

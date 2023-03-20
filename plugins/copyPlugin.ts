@@ -11,7 +11,7 @@ interface Option {
     from: string;
     to: string;
   }[];
-  outputLog?: boolean
+  outputLog?: boolean;
 }
 
 /**
@@ -43,7 +43,7 @@ const copyPlugin = (option: Option): esbuild.Plugin => {
       build.onStart(async () => {
         // directories that must be ensured to exist
         const ensureDirNames: Set<string> = new Set();
-        const copyFiles: { src: string, dest: string }[] = [];
+        const copyFiles: { src: string; dest: string }[] = [];
 
         for (const file of option.files) {
           const fromFileGlob = path.isAbsolute(file.from)
@@ -55,14 +55,12 @@ const copyPlugin = (option: Option): esbuild.Plugin => {
 
           for (const fromFile_ of fromFiles) {
             const fromFile = path.resolve(fromFile_);
-            if(!(await fs.stat(fromFile)).isFile()) {
+            if (!(await fs.stat(fromFile)).isFile()) {
               continue;
             }
 
             // relative path from `baseDir`
-            const dirname = path.dirname(
-              path.relative(baseDir, fromFile)
-            );
+            const dirname = path.dirname(path.relative(baseDir, fromFile));
             const name = path.basename(fromFile).replace(/\.[^/.]+$/, '');
             const ext = path.extname(fromFile);
             const toFile = path.resolve(
@@ -78,7 +76,7 @@ const copyPlugin = (option: Option): esbuild.Plugin => {
           }
         }
 
-        if(option.outputLog) {
+        if (option.outputLog) {
           ensureDirNames.forEach((dirname) => {
             console.log(`ensure: ${dirname}`);
           });
@@ -88,13 +86,18 @@ const copyPlugin = (option: Option): esbuild.Plugin => {
         }
 
         // ensure that all output directory exist
-        await Promise.all(Array.from(ensureDirNames)
-          .map((dirname) => fs.mkdir(dirname, {
-            recursive: true
-          })));
+        await Promise.all(
+          Array.from(ensureDirNames).map((dirname) =>
+            fs.mkdir(dirname, {
+              recursive: true,
+            })
+          )
+        );
 
         // copy files
-        await Promise.all(copyFiles.map(({ src, dest }) => fs.copyFile(src, dest)));
+        await Promise.all(
+          copyFiles.map(({ src, dest }) => fs.copyFile(src, dest))
+        );
       });
     },
   };

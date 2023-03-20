@@ -1,3 +1,8 @@
+/.github
+/node_modules
+/dist
+/Google Apps Script
+
 *.html
 *.scss
 *.svg

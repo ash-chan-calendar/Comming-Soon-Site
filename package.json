@@ -6,18 +6,22 @@
   "scripts": {
     "lint": "npx eslint .",
     "fmt": "npx prettier --write .",
+    "fmt-check": "npx prettier --check .",
     "build": "npx ts-node build.ts",
     "dev": "npx ts-node build.ts --dev",
     "watch": "npx ts-node build.ts --dev --watch",
-    "clean": "rm -rf dist/"
+    "clean": "rm -rf dist/",
+    "index": "npx ts-node scripts/createImageIndex.ts"
   },
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
     "esbuild": "0.17",
     "esbuild-sass-plugin": "2",
     "eslint": "8",
-    "eslint-config-prettier": "8",
+    "eslint-config-prettier": "^8.7.0",
     "glob": "^9.3.0",
     "prettier": "2",
     "ts-node": "10",

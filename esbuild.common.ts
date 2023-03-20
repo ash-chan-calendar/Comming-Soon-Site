@@ -32,7 +32,7 @@ const config: Partial<esbuild.BuildOptions> = {
       files: [
         { from: 'imgs/**/*', to: '[path]/[name][ext]' },
         { from: 'favicon/**/*', to: '[path]/[name][ext]' },
-      ]
+      ],
     }),
   ],
 };

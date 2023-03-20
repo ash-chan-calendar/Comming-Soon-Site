@@ -32,6 +32,7 @@ const config = devFlag ? devConfig : prodConfig;
     await ctx.watch();
     console.log('Watching...');
 
+    // eslint-disable-next-line
     for await (const _ of process.stdin) {
       // manually rebuild
       await ctx.rebuild();
