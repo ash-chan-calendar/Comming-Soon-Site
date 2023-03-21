@@ -25,15 +25,18 @@ interface repoContentItem {
   };
 }
 
-const ensureDir = function(path: string) {
-  return fs.stat(path).then((stat) => {
-    if(!stat.isDirectory()) {
-      throw Error();
-    }
-  }).catch(() => {
-    fs.mkdir(path);
-  });
-}
+const ensureDir = function (path: string) {
+  return fs
+    .stat(path)
+    .then((stat) => {
+      if (!stat.isDirectory()) {
+        throw Error();
+      }
+    })
+    .catch(() => {
+      fs.mkdir(path);
+    });
+};
 
 const createImageIndex = async function () {
   const res = await fetch(repoEndPoint);
@@ -62,5 +65,4 @@ const createImageIndex = async function () {
 
 ensureDir(path.dirname(outputPath))
   .then(createImageIndex)
-  .then((index) => fs.writeFile(outputPath, JSON.stringify(index), {  }))
-
+  .then((index) => fs.writeFile(outputPath, JSON.stringify(index), {}));
