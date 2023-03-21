@@ -15,11 +15,13 @@ $c-def-white: #ffffff;
   --c-text: #{$c-def-black};
   --c-link: #{$c-def-blue};
   --c-link-visited: #{$c-def-blue-2};
+  --c-separator: #{$c-def-black};
 
   @media (prefers-color-scheme: dark) {
     --c-bg: #{$c-def-black};
     --c-bg-hover: #{$c-def-black-light};
     --c-bg-active: #{$c-def-black-light2};
-    --c-text: #{$c-def-cream};
+    --c-text: #{$c-def-white};
+    --c-separator: #{$c-def-cream};
   }
 }

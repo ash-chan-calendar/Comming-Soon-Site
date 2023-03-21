@@ -40,6 +40,11 @@ main {
       display: inline-block;
       text-align: left;
     }
+
+    h2 {
+      border-bottom: 2px solid var(--c-separator);
+      padding-bottom: 0.4em;
+    }
   }
 }
 
