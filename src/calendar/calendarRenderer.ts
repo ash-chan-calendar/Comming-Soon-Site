@@ -136,7 +136,7 @@ class CalendarRenderer {
       const elRow = document.createElement('tr');
       const elCells = row.map((date) => {
         const elCell = document.createElement('td');
-        if (date <= 0) {
+        if (date <= 0 || monthEnd < date) {
           return elCell;
         }
 
