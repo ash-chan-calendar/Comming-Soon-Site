@@ -31,8 +31,10 @@ picture#logo {
 }
 
 main {
+  padding: 0 1em;
+
   > section {
-    max-width: 40rem;
+    max-width: 40em;
     margin: 0 auto;
     text-align: center;
 
