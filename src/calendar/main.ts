@@ -57,15 +57,18 @@ window.addEventListener('load', () => {
   const elMonthNext = getElementByIdOrThrow('calendar_month_next');
   const elYearPrev = getElementByIdOrThrow('calendar_year_prev');
   const elYearNext = getElementByIdOrThrow('calendar_year_next');
-
   const elImage = getElementByIdOrThrow('calendar_image') as HTMLImageElement;
+  const elLoader = getElementByIdOrThrow('loader');
+
   const renderImage = function () {
+    elLoader.classList.remove('hidden');
     getImageUrl(
       renderer.dateShowing.year,
       renderer.dateShowing.month,
       renderer.dateShowing.date
     ).then((url) => {
       elImage.src = url;
+      elLoader.classList.add('hidden');
     });
   };
 
