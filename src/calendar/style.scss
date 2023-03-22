@@ -55,6 +55,7 @@ main {
 
   .button-prev, .button-next {
     cursor: pointer;
+    user-select: none;
     color: var(--c-text);
     text-decoration: none;
     padding-top: 0.2em;
@@ -84,6 +85,7 @@ main {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
     gap: 0.5em;
+    user-select: none;
 
     > #calendar_month {
       grid-row: 1 / 2;
