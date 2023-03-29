@@ -1,4 +1,5 @@
 import { holidays, month_str as monthStr } from './calendar.json';
+import { addStringLeftToLength } from '../common/util';
 
 class CalendarDate {
   year: number;
@@ -29,6 +30,16 @@ class CalendarDate {
 
   normalized() {
     return CalendarDate.fromDate(this.toDate());
+  }
+
+  toString() {
+    return (
+      addStringLeftToLength(this.year.toString(), 4, '0') +
+      '-' +
+      addStringLeftToLength(this.month.toString(), 2, '0') +
+      '-' +
+      addStringLeftToLength(this.date.toString(), 2, '0')
+    );
   }
 }
 

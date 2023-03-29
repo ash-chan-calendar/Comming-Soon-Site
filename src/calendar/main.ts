@@ -48,6 +48,20 @@ const getImageUrl = async function (year: number, month: number, day: number) {
   return url;
 };
 
+const createDateLinkUrl = function (date: CalendarDate) {
+  const query = location.search;
+  const baseUrl = location.href.slice(0, -query.length);
+
+  // remove query of date=xxxx-xx-xx
+  const params = query
+    .slice(1)
+    .split('&')
+    .filter((param) => !/^date=(\d{4}-\d{2}-\d{2})$/.test(param));
+  params.unshift(`date=${date.toString()}`);
+
+  return `${baseUrl}?${params.join('&')}`;
+};
+
 window.addEventListener('load', () => {
   const elMonthNum = getElementByIdOrThrow('calendar_month_number');
   const elMonthStr = getElementByIdOrThrow('calendar_month_string');
@@ -72,13 +86,29 @@ window.addEventListener('load', () => {
     });
   };
 
+  // process query
+  let date = new Date();
+  const query = location.search.slice(1).split('&');
+  for (const param of query) {
+    const dateMatch = /^date=(\d{4}-\d{2}-\d{2})$/.exec(param);
+    if (dateMatch !== null) {
+      date = new Date(dateMatch[1]);
+      continue;
+    }
+  }
+
   const renderer = new CalendarRenderer(
     elMonthNum,
     elMonthStr,
     elYearNum,
     elDaysTbody,
-    CalendarDate.fromDate(new Date()),
+    CalendarDate.fromDate(date),
     function () {
+      window.history.replaceState(
+        renderer.dateShowing,
+        '',
+        createDateLinkUrl(renderer.dateShowing)
+      );
       renderImage();
     }
   );
