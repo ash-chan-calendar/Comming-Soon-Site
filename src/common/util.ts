@@ -10,7 +10,7 @@ const getElementByIdOrThrow = function (id: string) {
 const addStringLeftToLength = function (
   str: string,
   length: number,
-  pad: string = ' '
+  pad = ' '
 ) {
   return (
     pad
