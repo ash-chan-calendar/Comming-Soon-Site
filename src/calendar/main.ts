@@ -72,12 +72,23 @@ window.addEventListener('load', () => {
     });
   };
 
+  // process query
+  let date = new Date;
+  const query = location.search.slice(1).split('&');
+  for(const qStr of query) {
+    const dateMatch = /^date=(\d{4}-\d{2}-\d{2})$/.exec(qStr);
+    if(dateMatch !== null) {
+      date = new Date(dateMatch[1]);
+      continue;
+    }
+  }
+
   const renderer = new CalendarRenderer(
     elMonthNum,
     elMonthStr,
     elYearNum,
     elDaysTbody,
-    CalendarDate.fromDate(new Date()),
+    CalendarDate.fromDate(date),
     function () {
       renderImage();
     }
