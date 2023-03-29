@@ -1,13 +1,13 @@
-import { getElementByIdOrThrow } from "../common/util";
-import { CalendarDate, CalendarRenderer } from "./calendarRenderer";
+import { getElementByIdOrThrow } from '../common/util';
+import { CalendarDate, CalendarRenderer } from './calendarRenderer';
 
 const imageIndexUrl = new URL(
-  "imageIndex.json",
-  location.origin + location.pathname,
+  'imageIndex.json',
+  location.origin + location.pathname
 );
 const defaultImageUrl = new URL(
-  "imgs/calendar_default.png",
-  location.origin + location.pathname,
+  'imgs/calendar_default.png',
+  location.origin + location.pathname
 );
 let imageIndex: Record<string, string> | null = null;
 
@@ -53,40 +53,42 @@ const createDateLinkUrl = function (date: CalendarDate) {
   const baseUrl = location.href.slice(0, -query.length);
 
   // remove query of date=xxxx-xx-xx
-  const params = query.slice(1).split("&")
+  const params = query
+    .slice(1)
+    .split('&')
     .filter((param) => !/^date=(\d{4}-\d{2}-\d{2})$/.test(param));
   params.unshift(`date=${date.toString()}`);
 
-  return `${baseUrl}?${params.join("&")}`;
+  return `${baseUrl}?${params.join('&')}`;
 };
 
-window.addEventListener("load", () => {
-  const elMonthNum = getElementByIdOrThrow("calendar_month_number");
-  const elMonthStr = getElementByIdOrThrow("calendar_month_string");
-  const elYearNum = getElementByIdOrThrow("calendar_year_number");
-  const elDaysTbody = getElementByIdOrThrow("calendar_days_tbody");
-  const elMonthPrev = getElementByIdOrThrow("calendar_month_prev");
-  const elMonthNext = getElementByIdOrThrow("calendar_month_next");
-  const elYearPrev = getElementByIdOrThrow("calendar_year_prev");
-  const elYearNext = getElementByIdOrThrow("calendar_year_next");
-  const elImage = getElementByIdOrThrow("calendar_image") as HTMLImageElement;
-  const elLoader = getElementByIdOrThrow("loader");
+window.addEventListener('load', () => {
+  const elMonthNum = getElementByIdOrThrow('calendar_month_number');
+  const elMonthStr = getElementByIdOrThrow('calendar_month_string');
+  const elYearNum = getElementByIdOrThrow('calendar_year_number');
+  const elDaysTbody = getElementByIdOrThrow('calendar_days_tbody');
+  const elMonthPrev = getElementByIdOrThrow('calendar_month_prev');
+  const elMonthNext = getElementByIdOrThrow('calendar_month_next');
+  const elYearPrev = getElementByIdOrThrow('calendar_year_prev');
+  const elYearNext = getElementByIdOrThrow('calendar_year_next');
+  const elImage = getElementByIdOrThrow('calendar_image') as HTMLImageElement;
+  const elLoader = getElementByIdOrThrow('loader');
 
   const renderImage = function () {
-    elLoader.classList.remove("hidden");
+    elLoader.classList.remove('hidden');
     getImageUrl(
       renderer.dateShowing.year,
       renderer.dateShowing.month,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).then((url) => {
       elImage.src = url;
-      elLoader.classList.add("hidden");
+      elLoader.classList.add('hidden');
     });
   };
 
   // process query
   let date = new Date();
-  const query = location.search.slice(1).split("&");
+  const query = location.search.slice(1).split('&');
   for (const param of query) {
     const dateMatch = /^date=(\d{4}-\d{2}-\d{2})$/.exec(param);
     if (dateMatch !== null) {
@@ -104,44 +106,44 @@ window.addEventListener("load", () => {
     function () {
       window.history.replaceState(
         renderer.dateShowing,
-        "",
-        createDateLinkUrl(renderer.dateShowing),
+        '',
+        createDateLinkUrl(renderer.dateShowing)
       );
       renderImage();
-    },
+    }
   );
   renderer.render();
 
   // set month and year switch button listener
-  elMonthPrev.addEventListener("click", () => {
+  elMonthPrev.addEventListener('click', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year,
       renderer.dateShowing.month - 1,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });
-  elMonthNext.addEventListener("click", () => {
+  elMonthNext.addEventListener('click', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year,
       renderer.dateShowing.month + 1,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });
-  elYearPrev.addEventListener("click", () => {
+  elYearPrev.addEventListener('click', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year - 1,
       renderer.dateShowing.month,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });
-  elYearNext.addEventListener("click", () => {
+  elYearNext.addEventListener('click', () => {
     renderer.dateShowing = new CalendarDate(
       renderer.dateShowing.year + 1,
       renderer.dateShowing.month,
-      renderer.dateShowing.date,
+      renderer.dateShowing.date
     ).normalized();
     renderer.render();
   });

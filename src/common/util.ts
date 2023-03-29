@@ -10,11 +10,13 @@ const getElementByIdOrThrow = function (id: string) {
 const addStringLeftToLength = function (
   str: string,
   length: number,
-  pad: string = " ",
+  pad: string = ' '
 ) {
-  return pad.repeat(Math.floor((length - str.length) / pad.length))
-    .slice(0, length - str.length) +
-    str;
+  return (
+    pad
+      .repeat(Math.floor((length - str.length) / pad.length))
+      .slice(0, length - str.length) + str
+  );
 };
 
 export { addStringLeftToLength, getElementByIdOrThrow };

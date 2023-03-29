@@ -1,5 +1,5 @@
-import { holidays, month_str as monthStr } from "./calendar.json";
-import { addStringLeftToLength } from "../common/util";
+import { holidays, month_str as monthStr } from './calendar.json';
+import { addStringLeftToLength } from '../common/util';
 
 class CalendarDate {
   year: number;
@@ -20,7 +20,7 @@ class CalendarDate {
     return new CalendarDate(
       date.getFullYear(),
       date.getMonth() + 1,
-      date.getDate(),
+      date.getDate()
     );
   }
 
@@ -33,9 +33,13 @@ class CalendarDate {
   }
 
   toString() {
-    return addStringLeftToLength(this.year.toString(), 4, "0") +
-      "-" + addStringLeftToLength(this.month.toString(), 2, "0") +
-      "-" + addStringLeftToLength(this.date.toString(), 2, "0");
+    return (
+      addStringLeftToLength(this.year.toString(), 4, '0') +
+      '-' +
+      addStringLeftToLength(this.month.toString(), 2, '0') +
+      '-' +
+      addStringLeftToLength(this.date.toString(), 2, '0')
+    );
   }
 }
 
@@ -54,7 +58,7 @@ class CalendarRenderer {
     elYear: HTMLElement,
     elDaysTbody: HTMLElement,
     dateShowing: CalendarDate,
-    onRenderEnded?: () => void,
+    onRenderEnded?: () => void
   ) {
     this.elMonthNum = elMonthNum;
     this.elMonthStr = elMonthStr;
@@ -67,13 +71,13 @@ class CalendarRenderer {
   cellLinkClickListener = (e: MouseEvent) => {
     const cel = (e.target as HTMLElement)?.parentElement;
     if (!cel) {
-      throw Error("Failed to get calendar table cel");
+      throw Error('Failed to get calendar table cel');
     }
 
     this.dateShowing = new CalendarDate(
       this.dateShowing.year,
       this.dateShowing.month,
-      parseInt(cel.dataset.date ?? "1"),
+      parseInt(cel.dataset.date ?? '1')
     );
     this.render();
   };
@@ -84,7 +88,7 @@ class CalendarRenderer {
     this.elMonthNum.innerHTML = `${this.dateShowing.month}`;
     this.elMonthStr.innerHTML = monthStr[monthKey].long;
     this.elYear.innerHTML = `${this.dateShowing.year}`;
-    this.elDaysTbody.innerHTML = "";
+    this.elDaysTbody.innerHTML = '';
 
     // create Date with month=monthIndex + 1 and day=0 and get date
     // to get the last day of the month
@@ -92,13 +96,13 @@ class CalendarRenderer {
     const monthEnd = new Date(
       this.dateShowing.year,
       this.dateShowing.month,
-      0,
+      0
     ).getDate();
     // day of the week on the first day of the month
     const weekOfDayFirstDay = new Date(
       this.dateShowing.year,
       this.dateShowing.month - 1,
-      1,
+      1
     ).getDay();
 
     const holidayNames = new Array(monthEnd).fill(undefined) as (
@@ -119,10 +123,11 @@ class CalendarRenderer {
 
     // Today's date if the displayed year and month match
     // the current ones, -1 otherwise
-    const dateToday = this.dateToday.year === this.dateShowing.year &&
-        this.dateToday.month === this.dateShowing.month
-      ? this.dateToday.date
-      : -1;
+    const dateToday =
+      this.dateToday.year === this.dateShowing.year &&
+      this.dateToday.month === this.dateShowing.month
+        ? this.dateToday.date
+        : -1;
     // create calendar table (number[][])
     // [[-1,  0,  1,  2,  3,  4,  5],
     //    6,  7,  8,  9, 10, 11, 12],
@@ -135,37 +140,37 @@ class CalendarRenderer {
         new Array(calendarWidth)
           .fill(0)
           .map(
-            (_, column) => row * calendarWidth + column - weekOfDayFirstDay + 1,
+            (_, column) => row * calendarWidth + column - weekOfDayFirstDay + 1
           )
       );
     const elRows = dateTable.map((row) => {
-      const elRow = document.createElement("tr");
+      const elRow = document.createElement('tr');
       const elCells = row.map((date) => {
-        const elCell = document.createElement("td");
+        const elCell = document.createElement('td');
         if (date <= 0 || monthEnd < date) {
           return elCell;
         }
 
-        const elLink = document.createElement("a");
-        elLink.href = "javascript:void(0);";
+        const elLink = document.createElement('a');
+        elLink.href = 'javascript:void(0);';
         elLink.textContent = `${date}`;
-        elLink.addEventListener("click", this.cellLinkClickListener);
+        elLink.addEventListener('click', this.cellLinkClickListener);
         elCell.appendChild(elLink);
 
         const holidayName = holidayNames[date];
         if (holidayName) {
-          const elHoliday = document.createElement("span");
+          const elHoliday = document.createElement('span');
           elHoliday.textContent = holidayName;
-          elHoliday.className = "holiday";
+          elHoliday.className = 'holiday';
           elCell.appendChild(elHoliday);
 
-          elCell.classList.add("holiday");
+          elCell.classList.add('holiday');
         }
         if (date === dateToday) {
-          elCell.classList.add("today");
+          elCell.classList.add('today');
         }
         if (date === this.dateShowing.date) {
-          elCell.classList.add("showing");
+          elCell.classList.add('showing');
         }
 
         elCell.dataset.date = date.toString();
