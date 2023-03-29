@@ -7,4 +7,14 @@ const getElementByIdOrThrow = function (id: string) {
   return el;
 };
 
-export { getElementByIdOrThrow };
+const addStringLeftToLength = function (
+  str: string,
+  length: number,
+  pad: string = " ",
+) {
+  return pad.repeat(Math.floor((length - str.length) / pad.length))
+    .slice(0, length - str.length) +
+    str;
+};
+
+export { addStringLeftToLength, getElementByIdOrThrow };
